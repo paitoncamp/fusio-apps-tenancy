@@ -1,0 +1,47 @@
+
+<div class="row">
+    <div class="col-md-2 fusio-sidebar" ng-include src="'app/account/nav.html'"></div>
+    <div class="col-md-10">
+        <div class="fusio-content">
+            <h2>Tenant Member</h2>
+            <div uib-alert ng-class="'alert-info'">
+              List of available member. 
+            </div>
+
+          <table class="table">
+            <colgroup>
+              <col width="100" />
+              <col width="*" />
+              <col width="100" />
+              <col width="100" />
+              <col width="50" />
+            </colgroup>
+            <thead>
+            <tr>
+              <th>Apps</th>
+              <th>Member Name</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="member in members">
+              <td>
+            <span ng-switch="member.apps">
+                <span ng-switch-when="0"><span class="label label-info fusio-badge">Open</span></span>
+                <span ng-switch-when="1"><span class="label label-success fusio-badge">Payed</span></span>
+                <span ng-switch-when="2"><span class="label label-danger fusio-badge">Deleted</span></span>
+            </span>
+              </td>
+              <td>{{member.firstname}}</td>
+              <td>{{member.status}}</td>
+              <td>{{member.registerDate | date: 'shortDate'}}</td>
+              <td>
+                <button class="btn btn-default" ng-disabled="member.status != 0 || loading" ng-click="editMember( member)">Edit/Delete</button>
+              </td>
+            </tr>
+            </tbody>
+        </div>
+    </div>
+</div>
